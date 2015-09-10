@@ -1,4 +1,4 @@
-package MyObject;
+package myObject;
 
 public class Client {
 	private Integer egn;

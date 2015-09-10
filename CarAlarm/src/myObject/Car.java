@@ -1,4 +1,4 @@
-package MyObject;
+package myObject;
 
 import java.util.Date;
 
