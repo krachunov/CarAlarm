@@ -1,6 +1,6 @@
 package readInfo;
 
 public class ReadObject {
-	public 
+//	public 
 
 }
