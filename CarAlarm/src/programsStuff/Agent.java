@@ -29,11 +29,7 @@ public class Agent implements ICreateObject {
 		setClients();
 	}
 
-	public void machCarClient() {
-		for (Map.Entry<Long, Client> client : clients.entrySet()) {
-			
-		}
-	}
+
 
 	public ReadObject getRead() {
 		return read;

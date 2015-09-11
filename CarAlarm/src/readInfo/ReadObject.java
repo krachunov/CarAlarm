@@ -132,6 +132,7 @@ public class ReadObject implements ICreateObject {
 				String firstName = element[1];
 				String lastName = element[2];
 				String phoneNumber = element[3];
+				
 				Car myCar = null;
 				if (!clients.containsKey(egn)) {
 					Client newClient = new Client(egn, firstName, lastName,
