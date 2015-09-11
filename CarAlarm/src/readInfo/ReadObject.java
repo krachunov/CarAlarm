@@ -15,6 +15,8 @@ import java.util.TreeMap;
 import myObject.*;
 
 public class ReadObject implements ICreateObject {
+	private String clientFile = "resource\\client2.txt";
+	private String carFile = "resource\\car2.txt";
 
 	public Map<String, Car> carReading(String fileName)
 			throws FileNotFoundException, IOException, InvalidCarDataException,
@@ -102,38 +104,50 @@ public class ReadObject implements ICreateObject {
 
 	public Map<String, Car> carReading() throws FileNotFoundException,
 			IOException, InvalidCarDataException, ParseException {
-		return carReading("resource\\car2.txt");
+		return carReading(carFile);
 
 	}
 
-	public Map<Integer, Client> clientReadin(String fileName)
+	public Map<Long, Client> clientReading(String fileName)
 			throws FileNotFoundException, IOException {
-		Map<Integer, Client> clients = new TreeMap<Integer, Client>();
+		Map<Long, Client> clients = new TreeMap<Long, Client>();
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(
 				fileName)))) {
 			String line = br.readLine();
+			Long egn = null;
 			while (line != null) {
 				String regex = ";";
 				String[] element = line.split(regex, -1);
-				Integer egn = Integer.parseInt(element[0]);
+				if (element[0].length() == 10) {
+					if (element[0].matches(("\\d*"))) {
+						egn = Long.parseLong(element[0]);
+					} else {
+						line = br.readLine();
+						continue;
+					}
+				} else {
+					line = br.readLine();
+					continue;
+				}
 				String firstName = element[1];
 				String lastName = element[2];
 				String phoneNumber = element[3];
 				Car myCar = null;
 				if (!clients.containsKey(egn)) {
-					clients.put(egn, new Client(egn, firstName, lastName,
-							phoneNumber, myCar));
+					Client newClient = new Client(egn, firstName, lastName,
+							phoneNumber, myCar);
+					clients.put(egn, newClient);
 				}
-
+				line = br.readLine();
 			}
 		}
 		return clients;
 
 	}
 
-	public Map<Integer, Client> clientReadin() throws FileNotFoundException,
+	public Map<Long, Client> clientReading() throws FileNotFoundException,
 			IOException {
-		return clientReadin("resource\\client.txt");
+		return clientReading(clientFile);
 
 	}
 }

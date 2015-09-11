@@ -9,7 +9,7 @@ import myObject.Car;
 import myObject.Client;
 
 public interface ICreateObject {
-	public Map<Integer, Client> clientReadin() throws FileNotFoundException,
+	public Map<Long, Client> clientReading() throws FileNotFoundException,
 			IOException;
 
 	public Map<String, Car> carReading() throws FileNotFoundException,

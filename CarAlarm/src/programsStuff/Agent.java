@@ -17,14 +17,22 @@ public class Agent implements ICreateObject {
 	private String nameAgent;
 	private Integer numberAgent;
 	private Map<String, Car> cars;
-	private Map<Integer, Client> clients;
+	private Map<Long, Client> clients;
 
-	public Agent(String nameAgent, Integer numberAgent) {
+	public Agent(String nameAgent, Integer numberAgent)
+			throws FileNotFoundException, IOException, InvalidCarDataException,
+			ParseException {
 		setRead(new ReadObject());
 		setNameAgent(nameAgent);
 		setNumberAgent(numberAgent);
-		setCars(new TreeMap<String, Car>());
-		setClients(new TreeMap<Integer, Client>());
+		setCars();
+		setClients();
+	}
+
+	public void machCarClient() {
+		for (Map.Entry<Long, Client> client : clients.entrySet()) {
+			
+		}
 	}
 
 	public ReadObject getRead() {
@@ -55,23 +63,24 @@ public class Agent implements ICreateObject {
 		return cars;
 	}
 
-	public void setCars(Map<String, Car> cars) {
-		this.cars = cars;
+	public void setCars() throws FileNotFoundException, IOException,
+			InvalidCarDataException, ParseException {
+		this.cars = read.carReading();
 	}
 
-	public Map<Integer, Client> getClients() {
+	public Map<Long, Client> getClients() {
 		return clients;
 	}
 
-	public void setClients(Map<Integer, Client> clients) {
-		this.clients = clients;
+	public void setClients() throws FileNotFoundException, IOException {
+		this.clients = read.clientReading();
 	}
 
 	@Override
-	public Map<Integer, Client> clientReadin() throws FileNotFoundException,
+	public Map<Long, Client> clientReading() throws FileNotFoundException,
 			IOException {
 		// TODO Auto-generated method stub
-		return read.clientReadin();
+		return read.clientReading();
 	}
 
 	@Override

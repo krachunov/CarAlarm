@@ -1,13 +1,13 @@
 package myObject;
 
 public class Client {
-	private Integer egn;
+	private Long egn;
 	private String firstName;
 	private String lastName;
 	private String phoneNumber;
 	private Car myCar;
 
-	public Client(Integer egn, String firstName, String lastName,
+	public Client(Long egn, String firstName, String lastName,
 			String phoneNumber, Car mCar) {
 		setEgn(egn);
 		setFirstName(firstName);
@@ -17,11 +17,11 @@ public class Client {
 
 	}
 
-	public Integer getEgn() {
+	public Long getEgn() {
 		return egn;
 	}
 
-	public void setEgn(Integer egn) {
+	public void setEgn(Long egn) {
 		this.egn = egn;
 	}
 
