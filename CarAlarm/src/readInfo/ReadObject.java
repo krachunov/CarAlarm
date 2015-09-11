@@ -14,7 +14,7 @@ import java.util.TreeMap;
 
 import myObject.*;
 
-public class ReadObject {
+public class ReadObject implements ICreateObject {
 
 	public Map<String, Car> carReading(String fileName)
 			throws FileNotFoundException, IOException, InvalidCarDataException,
@@ -108,6 +108,7 @@ public class ReadObject {
 
 	public Map<Integer, Client> clientReadin(String fileName)
 			throws FileNotFoundException, IOException {
+		Map<Integer, Client> clients = new TreeMap<Integer, Client>();
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(
 				fileName)))) {
 			String line = br.readLine();
@@ -115,14 +116,24 @@ public class ReadObject {
 				String regex = ";";
 				String[] element = line.split(regex, -1);
 				Integer egn = Integer.parseInt(element[0]);
-				String firstName=element[1];
-				String lastName=element[2];
-				String phoneNumber=element[3];
-				Car myCar;
+				String firstName = element[1];
+				String lastName = element[2];
+				String phoneNumber = element[3];
+				Car myCar = null;
+				if (!clients.containsKey(egn)) {
+					clients.put(egn, new Client(egn, firstName, lastName,
+							phoneNumber, myCar));
+				}
 
 			}
 		}
-		return null;
+		return clients;
+
+	}
+
+	public Map<Integer, Client> clientReadin() throws FileNotFoundException,
+			IOException {
+		return clientReadin("resource\\client.txt");
 
 	}
 }
