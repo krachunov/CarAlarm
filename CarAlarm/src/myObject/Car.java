@@ -8,12 +8,12 @@ public class Car {
 	private String brand;
 	private String chassis;
 	private String tonnage;
-	private String prodYear;
+	private Date prodYear;
 	private Integer seatsNum;
 	private Integer enginePower;
 
 	public Car(String dkn, String model, String brand, String chassis,
-			String tonnage, String prodYear, Integer seatsNum,
+			String tonnage, Date prodYear, Integer seatsNum,
 			Integer enginePower) {
 		setDkn(dkn);
 		setModel(model);
@@ -65,11 +65,11 @@ public class Car {
 		this.tonnage = tonnage;
 	}
 
-	public String getProdYear() {
+	public Date getProdYear() {
 		return prodYear;
 	}
 
-	public void setProdYear(String prodYear) {
+	public void setProdYear(Date prodYear) {
 		this.prodYear = prodYear;
 	}
 
