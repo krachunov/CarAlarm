@@ -1,20 +1,18 @@
-package readInfo;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Map;
 
-import myObject.Car;
 
-public class Test {
+import readInfo.InvalidCarDataException;
+import programsStuff.*;
 
+public class Demo {
 	public static void main(String[] args) throws FileNotFoundException,
 			IOException, InvalidCarDataException, ParseException {
-		ReadObject ro = new ReadObject();
-		Map<String, Car> c = ro.carReading("resource\\car2.txt");
-		System.out.println(c.size());
+	
+		Agent agent0008 = new Agent("SCC", 8);
+		agent0008.
 
 	}
-
 }

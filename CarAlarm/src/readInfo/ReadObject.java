@@ -99,4 +99,30 @@ public class ReadObject {
 		return cars;
 
 	}
+
+	public Map<String, Car> carReading() throws FileNotFoundException,
+			IOException, InvalidCarDataException, ParseException {
+		return carReading("resource\\car2.txt");
+
+	}
+
+	public Map<Integer, Client> clientReadin(String fileName)
+			throws FileNotFoundException, IOException {
+		try (BufferedReader br = new BufferedReader(new FileReader(new File(
+				fileName)))) {
+			String line = br.readLine();
+			while (line != null) {
+				String regex = ";";
+				String[] element = line.split(regex, -1);
+				Integer egn = Integer.parseInt(element[0]);
+				String firstName=element[1];
+				String lastName=element[2];
+				String phoneNumber=element[3];
+				Car myCar;
+
+			}
+		}
+		return null;
+
+	}
 }
