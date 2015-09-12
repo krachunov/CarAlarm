@@ -16,13 +16,16 @@ import java.util.TreeMap;
 import myObject.*;
 
 public class ReadObject implements ICreateObject {
+	private HashSet<MyCar> cars;
+	private HashSet<MyPerson> clients;
+
 	private String clientFile = "resource\\client2.txt";
 	private String carFile = "resource\\car2.txt";
 
-	public HashSet<Car> carReading(String fileName)
+	public HashSet<MyCar> carReading(String fileName)
 			throws FileNotFoundException, IOException, InvalidCarDataException,
 			ParseException {
-		HashSet<Car> cars = new HashSet();
+		HashSet<MyCar> cars = new HashSet();
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(
 				fileName)))) {
 			String line = br.readLine();
@@ -89,7 +92,7 @@ public class ReadObject implements ICreateObject {
 					System.out.println("Element do not add: " + line);
 					continue;
 				}
-				Car newCar = new Car(dkn, model, brand, chassis, tonnage,
+				MyCar newCar = new MyCar(dkn, model, brand, chassis, tonnage,
 						dateProd, seatsNum, enginePower);
 				if (!cars.contains(newCar)) {
 					cars.add(newCar);
@@ -104,15 +107,15 @@ public class ReadObject implements ICreateObject {
 
 	}
 
-	public HashSet<Car> carReading() throws FileNotFoundException, IOException,
+	public HashSet<MyCar> carReading() throws FileNotFoundException, IOException,
 			InvalidCarDataException, ParseException {
 		return carReading(carFile);
 
 	}
 
-	public HashSet<Person> clientReading(String fileName)
+	public HashSet<MyPerson> clientReading(String fileName)
 			throws FileNotFoundException, IOException {
-		HashSet<Person> clients = new HashSet();
+		HashSet<MyPerson> clients = new HashSet();
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(
 				fileName)))) {
 			String line = br.readLine();
@@ -120,7 +123,7 @@ public class ReadObject implements ICreateObject {
 			while (line != null) {
 				String regex = ";";
 				String[] element = line.split(regex, -1);
-				
+
 				if (element[0].length() == 10) {
 					if (element[0].matches(("\\d*"))) {
 						egn = Long.parseLong(element[0]);
@@ -135,11 +138,11 @@ public class ReadObject implements ICreateObject {
 				String firstName = element[1];
 				String lastName = element[2];
 				String phoneNumber = element[3];
-				if(element[4].equals("")||element[4].equals("")){
-					
+				if (element[4].equals("") || element[4].equals("")) {
+
 				}
 				String myCar = element[4];
-				Person newClient = new Person(egn, firstName, lastName,
+				MyPerson newClient = new MyPerson(egn, firstName, lastName,
 						phoneNumber, myCar);
 				if (!clients.contains(newClient)) {
 
@@ -152,9 +155,27 @@ public class ReadObject implements ICreateObject {
 
 	}
 
-	public HashSet<Person> clientReading() throws FileNotFoundException,
+	public HashSet<MyPerson> clientReading() throws FileNotFoundException,
 			IOException {
 		return clientReading(clientFile);
 
 	}
+
+	public HashSet<MyCar> getCars() {
+		return cars;
+	}
+
+	public void setCars(HashSet<MyCar> cars) {
+		this.cars = cars;
+	}
+
+	public HashSet<MyPerson> getClients() {
+		return clients;
+	}
+
+	public void setClients(HashSet<MyPerson> clients) {
+		this.clients = clients;
+	}
+
+
 }

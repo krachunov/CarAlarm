@@ -2,7 +2,7 @@ package myObject;
 
 import java.util.Date;
 
-public class Car {
+public class MyCar {
 
 	private String dkn;
 	private String model;
@@ -13,7 +13,7 @@ public class Car {
 	private Integer seatsNum;
 	private Integer enginePower;
 
-	public Car(String dkn, String model, String brand, String chassis,
+	public MyCar(String dkn, String model, String brand, String chassis,
 			String tonnage, Date prodYear, Integer seatsNum, Integer enginePower) {
 		setDkn(dkn);
 		setModel(model);
@@ -41,7 +41,7 @@ public class Car {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Car other = (Car) obj;
+		MyCar other = (MyCar) obj;
 		if (dkn == null) {
 			if (other.dkn != null)
 				return false;

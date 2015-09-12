@@ -1,6 +1,6 @@
 package myObject;
 
-public class Person {
+public class MyPerson {
 
 	private Long egn;
 	private String firstName;
@@ -8,7 +8,7 @@ public class Person {
 	private String phoneNumber;
 	private String myCar;
 
-	public Person(Long egn, String firstName, String lastName,
+	public MyPerson(Long egn, String firstName, String lastName,
 			String phoneNumber, String mCar) {
 		setEgn(egn);
 		setFirstName(firstName);
@@ -34,7 +34,7 @@ public class Person {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Person other = (Person) obj;
+		MyPerson other = (MyPerson) obj;
 		if (egn == null) {
 			if (other.egn != null)
 				return false;

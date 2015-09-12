@@ -6,13 +6,13 @@ import java.text.ParseException;
 import java.util.HashSet;
 import java.util.Map;
 
-import myObject.Car;
-import myObject.Person;
+import myObject.MyCar;
+import myObject.MyPerson;
 
 public interface ICreateObject {
-	public HashSet<Person> clientReading() throws FileNotFoundException,
+	public HashSet<MyPerson> clientReading() throws FileNotFoundException,
 			IOException;
 
-	public HashSet<Car> carReading() throws FileNotFoundException, IOException,
+	public HashSet<MyCar> carReading() throws FileNotFoundException, IOException,
 			InvalidCarDataException, ParseException;
 }
