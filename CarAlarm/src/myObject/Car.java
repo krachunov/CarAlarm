@@ -3,6 +3,7 @@ package myObject;
 import java.util.Date;
 
 public class Car {
+
 	private String dkn;
 	private String model;
 	private String brand;
@@ -13,8 +14,7 @@ public class Car {
 	private Integer enginePower;
 
 	public Car(String dkn, String model, String brand, String chassis,
-			String tonnage, Date prodYear, Integer seatsNum,
-			Integer enginePower) {
+			String tonnage, Date prodYear, Integer seatsNum, Integer enginePower) {
 		setDkn(dkn);
 		setModel(model);
 		setBrand(brand);
@@ -23,6 +23,35 @@ public class Car {
 		setProdYear(prodYear);
 		setSeatsNum(seatsNum);
 
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dkn == null) ? 0 : dkn.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Car other = (Car) obj;
+		if (dkn == null) {
+			if (other.dkn != null)
+				return false;
+		} else if (!dkn.equals(other.dkn))
+			return false;
+		return true;
+	}
+	@Override
+	public String toString(){
+		return getDkn()+": "+getBrand()+": "+getModel()+": "+getChassis();
 	}
 
 	public String getDkn() {

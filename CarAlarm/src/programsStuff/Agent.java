@@ -3,6 +3,8 @@ package programsStuff;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -10,14 +12,14 @@ import readInfo.ICreateObject;
 import readInfo.InvalidCarDataException;
 import readInfo.ReadObject;
 import myObject.Car;
-import myObject.Client;
+import myObject.Person;
 
 public class Agent implements ICreateObject {
 	private ReadObject read;
 	private String nameAgent;
 	private Integer numberAgent;
-	private Map<String, Car> cars;
-	private Map<Long, Client> clients;
+	private HashSet<Car> cars;
+	private HashSet<Person> clients;
 
 	public Agent(String nameAgent, Integer numberAgent)
 			throws FileNotFoundException, IOException, InvalidCarDataException,
@@ -28,8 +30,6 @@ public class Agent implements ICreateObject {
 		setCars();
 		setClients();
 	}
-
-
 
 	public ReadObject getRead() {
 		return read;
@@ -55,7 +55,7 @@ public class Agent implements ICreateObject {
 		this.numberAgent = numberAgent;
 	}
 
-	public Map<String, Car> getCars() {
+	public HashSet<Car> getCars() {
 		return cars;
 	}
 
@@ -64,7 +64,7 @@ public class Agent implements ICreateObject {
 		this.cars = read.carReading();
 	}
 
-	public Map<Long, Client> getClients() {
+	public HashSet<Person> getClients() {
 		return clients;
 	}
 
@@ -73,15 +73,15 @@ public class Agent implements ICreateObject {
 	}
 
 	@Override
-	public Map<Long, Client> clientReading() throws FileNotFoundException,
+	public HashSet<Person> clientReading() throws FileNotFoundException,
 			IOException {
 		// TODO Auto-generated method stub
 		return read.clientReading();
 	}
 
 	@Override
-	public Map<String, Car> carReading() throws FileNotFoundException,
-			IOException, InvalidCarDataException, ParseException {
+	public HashSet<Car> carReading() throws FileNotFoundException, IOException,
+			InvalidCarDataException, ParseException {
 		// TODO Auto-generated method stub
 		return read.carReading();
 	}

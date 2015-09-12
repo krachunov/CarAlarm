@@ -4,7 +4,7 @@ import java.io.ObjectInputStream.GetField;
 import java.text.ParseException;
 import java.util.Map;
 
-import myObject.Client;
+import myObject.Person;
 import readInfo.InvalidCarDataException;
 import readInfo.ReadObject;
 import programsStuff.*;

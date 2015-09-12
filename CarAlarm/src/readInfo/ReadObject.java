@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -18,10 +19,10 @@ public class ReadObject implements ICreateObject {
 	private String clientFile = "resource\\client2.txt";
 	private String carFile = "resource\\car2.txt";
 
-	public Map<String, Car> carReading(String fileName)
+	public HashSet<Car> carReading(String fileName)
 			throws FileNotFoundException, IOException, InvalidCarDataException,
 			ParseException {
-		Map<String, Car> cars = new TreeMap<>();
+		HashSet<Car> cars = new HashSet();
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(
 				fileName)))) {
 			String line = br.readLine();
@@ -88,9 +89,10 @@ public class ReadObject implements ICreateObject {
 					System.out.println("Element do not add: " + line);
 					continue;
 				}
-				if (!cars.containsKey(dkn)) {
-					cars.put(dkn, new Car(dkn, model, brand, chassis, tonnage,
-							dateProd, seatsNum, enginePower));
+				Car newCar = new Car(dkn, model, brand, chassis, tonnage,
+						dateProd, seatsNum, enginePower);
+				if (!cars.contains(newCar)) {
+					cars.add(newCar);
 				}
 
 				line = br.readLine();
@@ -102,15 +104,15 @@ public class ReadObject implements ICreateObject {
 
 	}
 
-	public Map<String, Car> carReading() throws FileNotFoundException,
-			IOException, InvalidCarDataException, ParseException {
+	public HashSet<Car> carReading() throws FileNotFoundException, IOException,
+			InvalidCarDataException, ParseException {
 		return carReading(carFile);
 
 	}
 
-	public Map<Long, Client> clientReading(String fileName)
+	public HashSet<Person> clientReading(String fileName)
 			throws FileNotFoundException, IOException {
-		Map<Long, Client> clients = new TreeMap<Long, Client>();
+		HashSet<Person> clients = new HashSet();
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(
 				fileName)))) {
 			String line = br.readLine();
@@ -118,6 +120,7 @@ public class ReadObject implements ICreateObject {
 			while (line != null) {
 				String regex = ";";
 				String[] element = line.split(regex, -1);
+				
 				if (element[0].length() == 10) {
 					if (element[0].matches(("\\d*"))) {
 						egn = Long.parseLong(element[0]);
@@ -132,12 +135,15 @@ public class ReadObject implements ICreateObject {
 				String firstName = element[1];
 				String lastName = element[2];
 				String phoneNumber = element[3];
-				
-				Car myCar = null;
-				if (!clients.containsKey(egn)) {
-					Client newClient = new Client(egn, firstName, lastName,
-							phoneNumber, myCar);
-					clients.put(egn, newClient);
+				if(element[4].equals("")||element[4].equals("")){
+					
+				}
+				String myCar = element[4];
+				Person newClient = new Person(egn, firstName, lastName,
+						phoneNumber, myCar);
+				if (!clients.contains(newClient)) {
+
+					clients.add(newClient);
 				}
 				line = br.readLine();
 			}
@@ -146,7 +152,7 @@ public class ReadObject implements ICreateObject {
 
 	}
 
-	public Map<Long, Client> clientReading() throws FileNotFoundException,
+	public HashSet<Person> clientReading() throws FileNotFoundException,
 			IOException {
 		return clientReading(clientFile);
 
