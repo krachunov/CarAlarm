@@ -15,14 +15,14 @@ import java.util.TreeMap;
 
 import myObject.*;
 
-public class ReadObject implements ICreateObject {
-	private HashSet<MyCar> cars;
-	private HashSet<MyPerson> clients;
+public class Reader {
+	public static HashSet<MyCar> cars;
+	public static HashSet<MyPerson> clients;
 
-	private String clientFile = "resource\\client2.txt";
-	private String carFile = "resource\\car2.txt";
+	private static String clientFile = "resource\\client2.txt";
+	private static String carFile = "resource\\car2.txt";
 
-	public HashSet<MyCar> carReading(String fileName)
+	public static HashSet<MyCar> carReading(String fileName)
 			throws FileNotFoundException, IOException, InvalidCarDataException,
 			ParseException {
 		HashSet<MyCar> cars = new HashSet();
@@ -107,61 +107,82 @@ public class ReadObject implements ICreateObject {
 
 	}
 
-	public HashSet<MyCar> carReading() throws FileNotFoundException, IOException,
-			InvalidCarDataException, ParseException {
+
+	public static HashSet<MyCar> carReading() throws FileNotFoundException,
+			IOException, InvalidCarDataException, ParseException {
 		return carReading(carFile);
 
 	}
 
-	public HashSet<MyPerson> clientReading(String fileName)
+	public static HashSet<MyPerson> clientReading(String fileName)
 			throws FileNotFoundException, IOException {
 		HashSet<MyPerson> clients = new HashSet();
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(
 				fileName)))) {
 			String line = br.readLine();
 			Long egn = null;
+
+			String firstName;
+			String lastName;
+			String phoneNumber;
+			String myCar;
+			String regex = ";";
+
 			while (line != null) {
-				String regex = ";";
 				String[] element = line.split(regex, -1);
 
-				if (element[0].length() == 10) {
-					if (element[0].matches(("\\d*"))) {
-						egn = Long.parseLong(element[0]);
+				if (element.length >= 5) {
+					if (element[0].length() == 10) {
+						if (element[0].matches(("\\d*"))) {
+							egn = Long.parseLong(element[0]);
+						} else {
+							line = br.readLine();
+							continue;
+						}
 					} else {
 						line = br.readLine();
 						continue;
 					}
+					firstName = element[1];
+					lastName = element[2];
+					phoneNumber = element[3];
+					if (element[4] == null || element[4].equals("")
+							|| element[4].equals("")) {
+						myCar = "0000";
+					} else {
+						myCar = element[4];
+					}
+					MyPerson newClient = new MyPerson(egn, firstName, lastName,
+							phoneNumber, myCar);
+
+					clients.add(newClient);
 				} else {
 					line = br.readLine();
 					continue;
 				}
-				String firstName = element[1];
-				String lastName = element[2];
-				String phoneNumber = element[3];
-				if (element[4].equals("") || element[4].equals("")) {
 
-				}
-				String myCar = element[4];
-				MyPerson newClient = new MyPerson(egn, firstName, lastName,
-						phoneNumber, myCar);
-				if (!clients.contains(newClient)) {
-
-					clients.add(newClient);
-				}
 				line = br.readLine();
 			}
 		}
 		return clients;
 
 	}
-
-	public HashSet<MyPerson> clientReading() throws FileNotFoundException,
-			IOException {
+	/**
+	 * 
+	 * @return HashSet with person. Every person who is duplicate is save last
+	 *         record
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 * @throws InvalidCarDataException
+	 * @throws ParseException
+	 */
+	public static HashSet<MyPerson> clientReading()
+			throws FileNotFoundException, IOException {
 		return clientReading(clientFile);
 
 	}
 
-	public HashSet<MyCar> getCars() {
+	public static HashSet<MyCar> getCars() {
 		return cars;
 	}
 
@@ -169,13 +190,12 @@ public class ReadObject implements ICreateObject {
 		this.cars = cars;
 	}
 
-	public HashSet<MyPerson> getClients() {
+	public static HashSet<MyPerson> getClients() {
 		return clients;
 	}
 
 	public void setClients(HashSet<MyPerson> clients) {
 		this.clients = clients;
 	}
-
 
 }

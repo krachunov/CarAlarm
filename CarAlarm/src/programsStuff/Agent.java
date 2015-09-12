@@ -1,8 +1,12 @@
 package programsStuff;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import readInfo.Reader;
+import myObject.MyCar;
+import myObject.MyPerson;
 import myObject.MyPolicy;
 
 public class Agent {
@@ -14,6 +18,13 @@ public class Agent {
 		setNameAgent(nameAgent);
 		setNumberAgent(numberAgent);
 		setPolicy(new ArrayList<MyPolicy>());
+	}
+
+	public boolean addNewPolicy(Long policyNumber, Agent agentNumber, MyPerson myClient,
+			MyCar myCar, Date regDate, Date validDate) {
+//		MyPerson client = Reader.getClients()
+//	TODO 
+		return false;
 	}
 
 	public String getNameAgent() {

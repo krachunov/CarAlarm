@@ -6,7 +6,7 @@ import java.util.Map;
 
 import myObject.MyPerson;
 import readInfo.InvalidCarDataException;
-import readInfo.ReadObject;
+import readInfo.Reader;
 import programsStuff.*;
 
 public class Demo {
@@ -14,15 +14,13 @@ public class Demo {
 	public static void main(String[] args) throws FileNotFoundException,
 			IOException, InvalidCarDataException, ParseException {
 
-		ReadObject reader = new ReadObject();
-		reader.setCars(reader.carReading());
-		reader.setClients(reader.clientReading());
-
 		Agent agent0008 = new Agent("SCC", 8);
 
-//		System.out.println(agent0008.getClients().size());
+		Reader.cars = Reader.carReading();
+		Reader.clients = Reader.clientReading();
 
-//		System.out.println(agent0008.getCars().size());
+		System.out.println(Reader.cars.size());
+		System.out.println(Reader.clients.size());
 
 	}
 }

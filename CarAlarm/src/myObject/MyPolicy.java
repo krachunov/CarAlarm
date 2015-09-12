@@ -9,7 +9,18 @@ public class MyPolicy {
 	private Agent agentNumber;
 	private MyPerson myClient;
 	private MyCar myCar;
-	private Date date;
+	private Date registryDate;
+	private Date validData;
+
+	public MyPolicy(Long policyNumber, Agent agentNumber, MyPerson myClient,
+			MyCar myCar, Date regDate, Date validDate) {
+		setPolicyNumber(policyNumber);
+		setAgentNumber(agentNumber);
+		setMyClient(myClient);
+		setMyCar(myCar);
+		setRegistryDate(regDate);
+		setValidData(validDate);
+	}
 
 	public Long getPolicyNumber() {
 		return policyNumber;
@@ -43,12 +54,20 @@ public class MyPolicy {
 		this.myCar = myCar;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getRegistryDate() {
+		return registryDate;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setRegistryDate(Date registryDate) {
+		this.registryDate = registryDate;
+	}
+
+	public Date getValidData() {
+		return validData;
+	}
+
+	public void setValidData(Date validData) {
+		this.validData = validData;
 	}
 
 }
