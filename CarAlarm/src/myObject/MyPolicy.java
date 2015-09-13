@@ -4,13 +4,13 @@ import java.util.Date;
 
 public class MyPolicy {
 	private Long policyNumber;
-	private Agent agentNumber;
+	private MyAgent agentNumber;
 	private MyPerson myClient;
 	private MyCar myCar;
 	private Date registryDate;
 	private Date validData;
 
-	public MyPolicy(Long policyNumber, Agent agentNumber, MyPerson myClient,
+	public MyPolicy(Long policyNumber, MyAgent agentNumber, MyPerson myClient,
 			MyCar myCar, Date regDate, Date validDate) {
 		setPolicyNumber(policyNumber);
 		setAgentNumber(agentNumber);
@@ -28,11 +28,11 @@ public class MyPolicy {
 		this.policyNumber = policyNumber;
 	}
 
-	public Agent getAgentNumber() {
+	public MyAgent getAgentNumber() {
 		return agentNumber;
 	}
 
-	public void setAgentNumber(Agent agentNumber) {
+	public void setAgentNumber(MyAgent agentNumber) {
 		this.agentNumber = agentNumber;
 	}
 

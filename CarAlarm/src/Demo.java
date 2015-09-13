@@ -4,7 +4,7 @@ import java.io.ObjectInputStream.GetField;
 import java.text.ParseException;
 import java.util.Map;
 
-import myObject.Agent;
+import myObject.MyAgent;
 import myObject.MyPerson;
 import readInfo.InvalidCarDataException;
 import readInfo.Reader;
@@ -15,7 +15,7 @@ public class Demo {
 	public static void main(String[] args) throws FileNotFoundException,
 			IOException, InvalidCarDataException, ParseException {
 
-		Agent agent0008 = new Agent("SCC", 8);
+		MyAgent agent0008 = new MyAgent("SCC", 8);
 
 		Reader.cars = Reader.carReading();
 		Reader.clients = Reader.clientReading();

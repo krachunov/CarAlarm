@@ -6,22 +6,15 @@ import java.util.List;
 
 import readInfo.Reader;
 
-public class Agent {
+public class MyAgent {
 	private String nameAgent;
 	private Integer numberAgent;
 	private List<MyPolicy> policy;
 
-	public Agent(String nameAgent, Integer numberAgent) {
+	public MyAgent(String nameAgent, Integer numberAgent) {
 		setNameAgent(nameAgent);
 		setNumberAgent(numberAgent);
 		setPolicy(new ArrayList<MyPolicy>());
-	}
-
-	public boolean addNewPolicy(Long policyNumber, Agent agentNumber, MyPerson myClient,
-			MyCar myCar, Date regDate, Date validDate) {
-//		MyPerson client = Reader.getClients()
-//	TODO 
-		return false;
 	}
 
 	public String getNameAgent() {
@@ -48,4 +41,29 @@ public class Agent {
 		this.policy = policy;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((numberAgent == null) ? 0 : numberAgent.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MyAgent other = (MyAgent) obj;
+		if (numberAgent == null) {
+			if (other.numberAgent != null)
+				return false;
+		} else if (!numberAgent.equals(other.numberAgent))
+			return false;
+		return true;
+	}
 }
