@@ -6,11 +6,15 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import myObject.MyAgent;
+import myObject.MyCar;
+import myObject.MyPerson;
 
 public class OfficeProgram {
 	private String officeName;
 	private Map<Integer, MyAgent> agents;
 	private int numberOfAgent;
+	private Map<Long, MyPerson> people;
+	private Map<String, MyCar> cars;
 
 	public OfficeProgram(String name) {
 		setOfficeName(name);
@@ -61,6 +65,22 @@ public class OfficeProgram {
 
 	public void setNumberOfAgent(int numberOfAgent) {
 		this.numberOfAgent = numberOfAgent;
+	}
+
+	public Map<Long, MyPerson> getPeople() {
+		return people;
+	}
+
+	public void setPeople(Map<Long, MyPerson> people) {
+		this.people = people;
+	}
+
+	public Map<String, MyCar> getCars() {
+		return cars;
+	}
+
+	public void setCars(Map<String, MyCar> cars) {
+		this.cars = cars;
 	}
 
 }

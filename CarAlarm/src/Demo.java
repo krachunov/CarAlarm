@@ -23,5 +23,8 @@ public class Demo {
 		System.out.println(Reader.cars.size());
 		System.out.println(Reader.clients.size());
 
+		OfficeProgram testProgram = new OfficeProgram("CU");
+		testProgram.addAgent("Perfekt", 8);
+
 	}
 }
