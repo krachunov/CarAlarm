@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import readInfo.Reader;
+import programsStuff.OfficeProgram;
 
 public class MyAgent {
 	private String nameAgent;
@@ -15,6 +15,30 @@ public class MyAgent {
 		setNameAgent(nameAgent);
 		setNumberAgent(numberAgent);
 		setPolicy(new ArrayList<MyPolicy>());
+	}
+
+	public boolean createPolicy(Long egn, String firstName, String lastName,
+			String phoneNumber, Long policyNumber, String dkn, String model,
+			String brand, String chassis, String tonnage, Date prodYear,
+			Integer seatsNum, Integer enginePower, Date regDate, Date validDate) {
+		MyPerson newClient = null;
+		MyCar newCar = null;
+		if (!OfficeProgram.getPeople().containsKey(egn)) {
+			newClient = new MyPerson(egn, firstName, lastName, phoneNumber);
+			OfficeProgram.getPeople().put(egn, newClient);
+		} else {
+			newClient = OfficeProgram.getPeople().get(egn);
+		}
+		if (!OfficeProgram.getCars().containsKey(dkn)) {
+			newCar = new MyCar(dkn, model, brand, chassis, tonnage, prodYear,
+					seatsNum, enginePower);
+			OfficeProgram.getCars().put(dkn, newCar);
+		} else {
+			newCar = OfficeProgram.getCars().get(dkn);
+		}
+		MyPolicy newPolicy = new MyPolicy(policyNumber, this, newClient,
+				newCar, regDate, validDate);
+		return true;
 	}
 
 	public String getNameAgent() {

@@ -1,20 +1,20 @@
 package programsStuff;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 import myObject.MyAgent;
 import myObject.MyCar;
 import myObject.MyPerson;
+import myObject.MyPolicy;
 
 public class OfficeProgram {
 	private String officeName;
 	private Map<Integer, MyAgent> agents;
 	private int numberOfAgent;
-	private Map<Long, MyPerson> people;
-	private Map<String, MyCar> cars;
+	public static Map<Long, MyPerson> people;
+	public static Map<String, MyCar> cars;
+	public static Map<Long, MyPolicy> policies;
 
 	public OfficeProgram(String name) {
 		setOfficeName(name);
@@ -67,20 +67,28 @@ public class OfficeProgram {
 		this.numberOfAgent = numberOfAgent;
 	}
 
-	public Map<Long, MyPerson> getPeople() {
+	public static Map<Long, MyPerson> getPeople() {
 		return people;
 	}
 
-	public void setPeople(Map<Long, MyPerson> people) {
-		this.people = people;
+	public static void setPeople(Map<Long, MyPerson> people) {
+		OfficeProgram.people = people;
 	}
 
-	public Map<String, MyCar> getCars() {
+	public static Map<String, MyCar> getCars() {
 		return cars;
 	}
 
-	public void setCars(Map<String, MyCar> cars) {
-		this.cars = cars;
+	public static void setCars(Map<String, MyCar> cars) {
+		OfficeProgram.cars = cars;
+	}
+
+	public static Map<Long, MyPolicy> getPolicies() {
+		return policies;
+	}
+
+	public static void setPolicies(Map<Long, MyPolicy> policies) {
+		OfficeProgram.policies = policies;
 	}
 
 }
