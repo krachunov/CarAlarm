@@ -21,15 +21,17 @@ public class MyAgent {
 			String phoneNumber, Long policyNumber, String dkn, String model,
 			String brand, String chassis, String tonnage, Date prodYear,
 			Integer seatsNum, Integer enginePower, Date regDate, Date validDate) {
-		//TODO - add function to add car and client to local agent
+
 		MyPerson newClient = null;
 		MyCar newCar = null;
+		// Client object
 		if (!OfficeProgram.getPeople().containsKey(egn)) {
 			newClient = new MyPerson(egn, firstName, lastName, phoneNumber);
 			OfficeProgram.getPeople().put(egn, newClient);
 		} else {
 			newClient = OfficeProgram.getPeople().get(egn);
 		}
+		// Car object
 		if (!OfficeProgram.getCars().containsKey(dkn)) {
 			newCar = new MyCar(dkn, model, brand, chassis, tonnage, prodYear,
 					seatsNum, enginePower);
@@ -39,6 +41,26 @@ public class MyAgent {
 		}
 		MyPolicy newPolicy = new MyPolicy(policyNumber, this, newClient,
 				newCar, regDate, validDate);
+		// Add policy to the Date tree
+		{
+			String validDateToString = String.valueOf(validDate);
+			if (OfficeProgram.getPoliciesByTime()
+					.containsKey(validDateToString)) {
+				List<MyPolicy> listOfPolicy = OfficeProgram.getPoliciesByTime()
+						.get(validDateToString);
+				listOfPolicy.add(newPolicy);
+			} else {
+				List<MyPolicy> listOfPolicy = new ArrayList<MyPolicy>();
+				listOfPolicy.add(newPolicy);
+				OfficeProgram.getPoliciesByTime().put(validDateToString,
+						listOfPolicy);
+			}
+		}
+
+		// Add policy to the general office
+		OfficeProgram.getPolicies().put(policyNumber, newPolicy);
+		// Add policy to local agent
+		this.getPolicy().add(newPolicy);
 		return true;
 	}
 
