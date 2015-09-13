@@ -21,6 +21,7 @@ public class MyAgent {
 			String phoneNumber, Long policyNumber, String dkn, String model,
 			String brand, String chassis, String tonnage, Date prodYear,
 			Integer seatsNum, Integer enginePower, Date regDate, Date validDate) {
+		//TODO - add function to add car and client to local agent
 		MyPerson newClient = null;
 		MyCar newCar = null;
 		if (!OfficeProgram.getPeople().containsKey(egn)) {
