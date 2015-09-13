@@ -6,15 +6,13 @@ public class MyPerson {
 	private String firstName;
 	private String lastName;
 	private String phoneNumber;
-	private String myCar;
 
 	public MyPerson(Long egn, String firstName, String lastName,
-			String phoneNumber, String mCar) {
+			String phoneNumber) {
 		setEgn(egn);
 		setFirstName(firstName);
 		setLastName(lastName);
 		setPhoneNumber(phoneNumber);
-		setMyCar(mCar);
 
 	}
 
@@ -79,14 +77,6 @@ public class MyPerson {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
-	}
-
-	public String getMyCar() {
-		return myCar;
-	}
-
-	public void setMyCar(String myCar) {
-		this.myCar = myCar;
 	}
 
 }

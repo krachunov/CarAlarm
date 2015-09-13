@@ -107,7 +107,6 @@ public class Reader {
 
 	}
 
-
 	public static HashSet<MyCar> carReading() throws FileNotFoundException,
 			IOException, InvalidCarDataException, ParseException {
 		return carReading(carFile);
@@ -116,7 +115,7 @@ public class Reader {
 
 	public static HashSet<MyPerson> clientReading(String fileName)
 			throws FileNotFoundException, IOException {
-		HashSet<MyPerson> clients = new HashSet();
+		HashSet<MyPerson> clients = new HashSet<MyPerson>();
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(
 				fileName)))) {
 			String line = br.readLine();
@@ -125,7 +124,6 @@ public class Reader {
 			String firstName;
 			String lastName;
 			String phoneNumber;
-			String myCar;
 			String regex = ";";
 
 			while (line != null) {
@@ -146,14 +144,9 @@ public class Reader {
 					firstName = element[1];
 					lastName = element[2];
 					phoneNumber = element[3];
-					if (element[4] == null || element[4].equals("")
-							|| element[4].equals("")) {
-						myCar = "0000";
-					} else {
-						myCar = element[4];
-					}
+
 					MyPerson newClient = new MyPerson(egn, firstName, lastName,
-							phoneNumber, myCar);
+							phoneNumber);
 
 					clients.add(newClient);
 				} else {
@@ -167,6 +160,7 @@ public class Reader {
 		return clients;
 
 	}
+
 	/**
 	 * 
 	 * @return HashSet with person. Every person who is duplicate is save last
