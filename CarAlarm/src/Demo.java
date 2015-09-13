@@ -4,6 +4,7 @@ import java.io.ObjectInputStream.GetField;
 import java.text.ParseException;
 import java.util.Map;
 
+import myObject.Agent;
 import myObject.MyPerson;
 import readInfo.InvalidCarDataException;
 import readInfo.Reader;

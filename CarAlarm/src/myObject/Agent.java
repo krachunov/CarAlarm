@@ -1,13 +1,10 @@
-package programsStuff;
+package myObject;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import readInfo.Reader;
-import myObject.MyCar;
-import myObject.MyPerson;
-import myObject.MyPolicy;
 
 public class Agent {
 	private String nameAgent;

@@ -2,8 +2,6 @@ package myObject;
 
 import java.util.Date;
 
-import programsStuff.Agent;
-
 public class MyPolicy {
 	private Long policyNumber;
 	private Agent agentNumber;
