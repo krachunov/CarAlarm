@@ -9,9 +9,9 @@ import java.util.Map;
 import org.omg.PortableInterceptor.ORBInitInfoPackage.DuplicateName;
 
 import programsStuff.OfficeProgram;
-import readInfo.IOperation;
+import readInfo.ISearchOperation;
 
-public class MyAgent implements IOperation {
+public class MyAgent implements ISearchOperation {
 	private String nameAgent;
 	private Integer numberAgent;
 

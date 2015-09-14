@@ -6,14 +6,14 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import readInfo.IOperation;
+import readInfo.ISearchOperation;
 import readInfo.Reader;
 import myObject.MyAgent;
 import myObject.MyCar;
 import myObject.MyPerson;
 import myObject.MyPolicy;
 
-public class OfficeProgram implements IOperation {
+public class OfficeProgram implements ISearchOperation {
 	private String officeName;
 	private Map<Integer, MyAgent> agents;
 	private int numberOfAgent;

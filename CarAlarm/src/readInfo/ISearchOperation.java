@@ -4,7 +4,7 @@ import java.util.List;
 
 import myObject.MyPolicy;
 
-public interface IOperation {
+public interface ISearchOperation {
 	public List<MyPolicy> serachingByDate();
 	public List<MyPolicy> serachingByDKN();
 
