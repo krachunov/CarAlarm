@@ -8,13 +8,13 @@ public class MyCar {
 	private String model;
 	private String brand;
 	private String chassis;
-	private String tonnage;
+	private Double tonnage;
 	private Date prodYear;
 	private Integer seatsNum;
 	private Integer enginePower;
 
 	public MyCar(String dkn, String model, String brand, String chassis,
-			String tonnage, Date prodYear, Integer seatsNum, Integer enginePower) {
+			Double tonnage, Date prodYear, Integer seatsNum, Integer enginePower) {
 		setDkn(dkn);
 		setModel(model);
 		setBrand(brand);
@@ -86,11 +86,11 @@ public class MyCar {
 		this.chassis = chassis;
 	}
 
-	public String getTonnage() {
+	public Double getTonnage() {
 		return tonnage;
 	}
 
-	public void setTonnage(String tonnage) {
+	public void setTonnage(Double tonnage) {
 		this.tonnage = tonnage;
 	}
 

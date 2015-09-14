@@ -1,6 +1,7 @@
 package myObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -17,42 +18,104 @@ public class MyAgent {
 		setPolicy(new ArrayList<MyPolicy>());
 	}
 
-	public boolean createPolicy(Long egn, String firstName, String lastName,
-			String phoneNumber, Long policyNumber, String dkn, String model,
-			String brand, String chassis, String tonnage, Date prodYear,
-			Integer seatsNum, Integer enginePower, Date regDate, Date validDate) {
-
+	public MyPerson cratenewClient(Long egn, String firstName, String lastName,
+			String phoneNumber) {
 		MyPerson newClient = null;
-		MyCar newCar = null;
-		// Client object
+
 		if (!OfficeProgram.getPeople().containsKey(egn)) {
 			newClient = new MyPerson(egn, firstName, lastName, phoneNumber);
 			OfficeProgram.getPeople().put(egn, newClient);
 		} else {
 			newClient = OfficeProgram.getPeople().get(egn);
 		}
-		// Car object
+		// TODO
+		return newClient;
+	}
+
+	/**
+	 * 
+	 * @param dkn
+	 *            - String
+	 * @param model
+	 *            - String
+	 * @param brand
+	 *            - String
+	 * @param chassis
+	 *            - String
+	 * @param tonnage
+	 *            - Double
+	 * @param prodYear
+	 *            - String in format DD/MM/YYYY
+	 * @param seatsNum
+	 *            - int
+	 * @param enginePower
+	 *            -int
+	 * @return - null or new element
+	 */
+	public MyCar crateNewCar(String dkn, String model, String brand,
+			String chassis, Double tonnage, String prodYear, Integer seatsNum,
+			Integer enginePower) {
+
+		String[] splitedTime;
+		String regex = "[0-9]{2}/[0-9]{2}/[0-9]{4}";
+		String regexSeparator = "/";
+		if (prodYear.matches(regex)) {
+			splitedTime = prodYear.split(regexSeparator);
+		} else {
+			throw new IllegalArgumentException(
+					"Enter the date in type DD/MM/YYYY");
+		}
+
+		Date validDateValue = new Date();
+		validDateValue.setDate(Integer.parseInt(splitedTime[0]));
+		validDateValue.setMonth(Integer.parseInt(splitedTime[1]));
+		validDateValue.setYear((Integer.parseInt(splitedTime[2])));
+
+		MyCar newCar = null;
 		if (!OfficeProgram.getCars().containsKey(dkn)) {
-			newCar = new MyCar(dkn, model, brand, chassis, tonnage, prodYear,
-					seatsNum, enginePower);
+			newCar = new MyCar(dkn, model, brand, chassis, tonnage,
+					validDateValue, seatsNum, enginePower);
 			OfficeProgram.getCars().put(dkn, newCar);
 		} else {
 			newCar = OfficeProgram.getCars().get(dkn);
 		}
-		MyPolicy newPolicy = new MyPolicy(policyNumber, this, newClient,
-				newCar, regDate, validDate);
+		OfficeProgram.getCars().put(dkn, newCar);
+		return newCar;
+	}
+
+	public boolean createPolicy(Long egn, String dkn, Long policyNumber,
+			String regDate, String validDate) {
+		MyPerson client = OfficeProgram.getPeople().get(egn);
+		MyCar car = OfficeProgram.getCars().get(dkn);
+		String[] splitedTime;
+		String regex = "[0-9]{2}/[0-9]{2}/[0-9]{4}";
+		String regexSeparator = "/";
+		if (validDate.matches(regex)) {
+			splitedTime = validDate.split(regexSeparator);
+		} else {
+			throw new IllegalArgumentException(
+					"Enter the date in type DD/MM/YYYY");
+		}
+
+		Date validDateValue = new Date();
+		validDateValue.setDate(Integer.parseInt(splitedTime[0]));
+		validDateValue.setMonth(Integer.parseInt(splitedTime[1]));
+		validDateValue.setYear((Integer.parseInt(splitedTime[2])));
+		MyPolicy newPolicy = new MyPolicy(policyNumber, this, client, car,
+				new Date(), validDateValue);
+
 		// Add policy to the Date tree
 		{
 			String validDateToString = String.valueOf(validDate);
 			if (OfficeProgram.getPoliciesByTime()
-					.containsKey(validDateToString)) {
+					.containsKey(validDateValue)) {
 				List<MyPolicy> listOfPolicy = OfficeProgram.getPoliciesByTime()
-						.get(validDateToString);
+						.get(validDateValue);
 				listOfPolicy.add(newPolicy);
 			} else {
 				List<MyPolicy> listOfPolicy = new ArrayList<MyPolicy>();
 				listOfPolicy.add(newPolicy);
-				OfficeProgram.getPoliciesByTime().put(validDateToString,
+				OfficeProgram.getPoliciesByTime().put(validDateValue,
 						listOfPolicy);
 			}
 		}

@@ -1,5 +1,6 @@
 package programsStuff;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -18,11 +19,15 @@ public class OfficeProgram {
 	public static Map<String, MyCar> cars;
 	public static Map<Long, MyPolicy> policies;
 	// Convert type Date to String
-	public static TreeMap<String, List<MyPolicy>> policiesByTime;
+	public static TreeMap<Date, List<MyPolicy>> policiesByTime;
 
 	public OfficeProgram(String name) {
 		setOfficeName(name);
 		setAgents(new TreeMap<Integer, MyAgent>());
+		people = new TreeMap<Long, MyPerson>();
+		cars = new TreeMap<String, MyCar>();
+		policies = new TreeMap<Long, MyPolicy>();
+		policiesByTime = new TreeMap<Date, List<MyPolicy>>();
 	}
 
 	/**
@@ -95,12 +100,12 @@ public class OfficeProgram {
 		OfficeProgram.policies = policies;
 	}
 
-	public static TreeMap<String, List<MyPolicy>> getPoliciesByTime() {
+	public static TreeMap<Date, List<MyPolicy>> getPoliciesByTime() {
 		return policiesByTime;
 	}
 
 	public static void setPoliciesByTime(
-			TreeMap<String, List<MyPolicy>> policiesByTime) {
+			TreeMap<Date, List<MyPolicy>> policiesByTime) {
 		OfficeProgram.policiesByTime = policiesByTime;
 	}
 

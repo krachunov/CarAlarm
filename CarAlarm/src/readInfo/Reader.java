@@ -37,7 +37,7 @@ public class Reader {
 				String model = null;
 				String brand = null;
 				String chassis = null;
-				String tonnage = null;
+				Double tonnage = null;
 				Date dateProd = null;
 				Integer seatsNum = null;
 				Integer enginePower = null;
@@ -64,9 +64,9 @@ public class Reader {
 						chassis = element[3];
 					}
 					if (element[4] == null || element[4].equals("")) {
-						tonnage = "0";
+						tonnage = 0.0;
 					} else {
-						tonnage = element[4];
+						tonnage = Double.parseDouble(element[4]);
 					}
 
 					if (element[5] == null || element[5].equals("")) {

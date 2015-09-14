@@ -68,4 +68,30 @@ public class MyPolicy {
 		this.validData = validData;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((policyNumber == null) ? 0 : policyNumber.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MyPolicy other = (MyPolicy) obj;
+		if (policyNumber == null) {
+			if (other.policyNumber != null)
+				return false;
+		} else if (!policyNumber.equals(other.policyNumber))
+			return false;
+		return true;
+	}
+
 }
