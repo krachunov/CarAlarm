@@ -1,63 +1,67 @@
 package UserInterface;
 
 import javax.swing.JFrame;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.layout.FormSpecs;
+import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class LoginWindow extends JFrame {
-	private JTextField UserTextFild;
-	private JTextField PasswordTextFild;
-	private JButton button;
+	private JTextField txtUsername;
+	private JTextField txtPassword;
 	public LoginWindow() {
+		setTitle("Login Window");
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		getContentPane().setLayout(gridBagLayout);
 		
-		setTitle("Login Panel");
-		getContentPane().setLayout(new FormLayout(new ColumnSpec[] {
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("default:grow"),},
-			new RowSpec[] {
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,}));
+		JLabel lblUsername = new JLabel("Username");
+		GridBagConstraints gbc_lblUsername = new GridBagConstraints();
+		gbc_lblUsername.anchor = GridBagConstraints.EAST;
+		gbc_lblUsername.insets = new Insets(0, 0, 5, 5);
+		gbc_lblUsername.gridx = 0;
+		gbc_lblUsername.gridy = 0;
+		getContentPane().add(lblUsername, gbc_lblUsername);
 		
-		JLabel lblUser = new JLabel("User:");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().add(lblUser, "4, 4, center, default");
+		txtUsername = new JTextField();
+		txtUsername.setText("UserName");
+		GridBagConstraints gbc_txtUsername = new GridBagConstraints();
+		gbc_txtUsername.anchor = GridBagConstraints.WEST;
+		gbc_txtUsername.insets = new Insets(0, 0, 5, 0);
+		gbc_txtUsername.gridx = 1;
+		gbc_txtUsername.gridy = 0;
+		getContentPane().add(txtUsername, gbc_txtUsername);
+		txtUsername.setColumns(10);
 		
-		UserTextFild = new JTextField();
-		getContentPane().add(UserTextFild, "6, 4, left, default");
-		UserTextFild.setColumns(10);
+		JLabel lblPassword = new JLabel("password");
+		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
+		gbc_lblPassword.anchor = GridBagConstraints.EAST;
+		gbc_lblPassword.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPassword.gridx = 0;
+		gbc_lblPassword.gridy = 1;
+		getContentPane().add(lblPassword, gbc_lblPassword);
 		
-		JLabel lblPassword = new JLabel("Password:");
-		getContentPane().add(lblPassword, "4, 8, center, default");
+		txtPassword = new JTextField();
+		txtPassword.setText("Password");
+		GridBagConstraints gbc_txtPassword = new GridBagConstraints();
+		gbc_txtPassword.insets = new Insets(0, 0, 5, 0);
+		gbc_txtPassword.anchor = GridBagConstraints.WEST;
+		gbc_txtPassword.gridx = 1;
+		gbc_txtPassword.gridy = 1;
+		getContentPane().add(txtPassword, gbc_txtPassword);
+		txtPassword.setColumns(10);
 		
-		PasswordTextFild = new JTextField();
-		getContentPane().add(PasswordTextFild, "6, 8, left, default");
-		PasswordTextFild.setColumns(10);
-		
-		button = new JButton("Login");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		getContentPane().add(button, "6, 10, left, default");
+		JButton LoginButton = new JButton("Login");
+		GridBagConstraints gbc_LoginButton = new GridBagConstraints();
+		gbc_LoginButton.anchor = GridBagConstraints.WEST;
+		gbc_LoginButton.gridx = 1;
+		gbc_LoginButton.gridy = 2;
+		getContentPane().add(LoginButton, gbc_LoginButton);
 	}
 
 }

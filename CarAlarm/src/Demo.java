@@ -1,21 +1,17 @@
+import java.awt.EventQueue;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.ObjectInputStream.GetField;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Map;
 
 import org.omg.PortableInterceptor.ORBInitInfoPackage.DuplicateName;
 
+import UserInterface.LoginWindow;
 import myObject.MyAgent;
-import myObject.MyPerson;
 import readInfo.InvalidCarDataException;
-import readInfo.Reader;
 import programsStuff.*;
 
 public class Demo {
-	@SuppressWarnings("unused")
+
 	public static void main(String[] args) throws FileNotFoundException,
 			IOException, InvalidCarDataException, ParseException, DuplicateName {
 
