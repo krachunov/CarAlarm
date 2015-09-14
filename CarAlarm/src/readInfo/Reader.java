@@ -16,9 +16,6 @@ import java.util.TreeMap;
 import myObject.*;
 
 public class Reader {
-	public static HashSet<MyCar> cars;
-	public static HashSet<MyPerson> clients;
-
 	private static String clientFile = "resource\\client2.txt";
 	private static String carFile = "resource\\car2.txt";
 
@@ -176,20 +173,6 @@ public class Reader {
 
 	}
 
-	public static HashSet<MyCar> getCars() {
-		return cars;
-	}
 
-	public void setCars(HashSet<MyCar> cars) {
-		this.cars = cars;
-	}
-
-	public static HashSet<MyPerson> getClients() {
-		return clients;
-	}
-
-	public void setClients(HashSet<MyPerson> clients) {
-		this.clients = clients;
-	}
 
 }

@@ -6,28 +6,37 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import readInfo.IOperation;
+import readInfo.Reader;
 import myObject.MyAgent;
 import myObject.MyCar;
 import myObject.MyPerson;
 import myObject.MyPolicy;
 
-public class OfficeProgram {
+public class OfficeProgram implements IOperation {
 	private String officeName;
 	private Map<Integer, MyAgent> agents;
 	private int numberOfAgent;
-	public static Map<Long, MyPerson> people;
-	public static Map<String, MyCar> cars;
-	public static Map<Long, MyPolicy> policies;
-	// Convert type Date to String
-	public static TreeMap<Date, List<MyPolicy>> policiesByTime;
+	private Reader reader;
+	public static Map<Long, MyPerson> people; // key is EGN
+	public static Map<String, MyCar> cars; // key is DKN
+	public static Map<Long, MyPolicy> policies; // key is policy number
+	public static Map<String, List<MyPolicy>> policiesByDKN;// key is DKN
+	public static TreeMap<Date, List<MyPolicy>> policiesByTime; // key is Date
+	public static TreeMap<Integer, List<MyPolicy>> policiesByAgent;// key is
+																	// Agent
+																	// number
 
 	public OfficeProgram(String name) {
 		setOfficeName(name);
 		setAgents(new TreeMap<Integer, MyAgent>());
-		people = new TreeMap<Long, MyPerson>();
-		cars = new TreeMap<String, MyCar>();
-		policies = new TreeMap<Long, MyPolicy>();
-		policiesByTime = new TreeMap<Date, List<MyPolicy>>();
+		setReader(new Reader());
+		setPeople(new TreeMap<Long, MyPerson>());
+		setCars(new TreeMap<String, MyCar>());
+		setPolicies(new TreeMap<Long, MyPolicy>());
+		setPoliciesByTime(new TreeMap<Date, List<MyPolicy>>());
+		setPoliciesByDKN(new TreeMap<String, List<MyPolicy>>());
+		setPoliciesByAgent(new TreeMap<Integer, List<MyPolicy>>());
 	}
 
 	/**
@@ -76,6 +85,14 @@ public class OfficeProgram {
 		this.numberOfAgent = numberOfAgent;
 	}
 
+	public Reader getReader() {
+		return reader;
+	}
+
+	public void setReader(Reader reader) {
+		this.reader = reader;
+	}
+
 	public static Map<Long, MyPerson> getPeople() {
 		return people;
 	}
@@ -107,6 +124,36 @@ public class OfficeProgram {
 	public static void setPoliciesByTime(
 			TreeMap<Date, List<MyPolicy>> policiesByTime) {
 		OfficeProgram.policiesByTime = policiesByTime;
+	}
+
+	public static Map<String, List<MyPolicy>> getPoliciesByDKN() {
+		return policiesByDKN;
+	}
+
+	public static void setPoliciesByDKN(
+			Map<String, List<MyPolicy>> policiesByDKN) {
+		OfficeProgram.policiesByDKN = policiesByDKN;
+	}
+
+	@Override
+	public List<MyPolicy> serachingByDate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MyPolicy> serachingByDKN() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static TreeMap<Integer, List<MyPolicy>> getPoliciesByAgent() {
+		return policiesByAgent;
+	}
+
+	public static void setPoliciesByAgent(
+			TreeMap<Integer, List<MyPolicy>> policiesByAgent) {
+		OfficeProgram.policiesByAgent = policiesByAgent;
 	}
 
 }

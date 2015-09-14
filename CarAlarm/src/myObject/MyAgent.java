@@ -4,18 +4,20 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
+import org.omg.PortableInterceptor.ORBInitInfoPackage.DuplicateName;
 
 import programsStuff.OfficeProgram;
+import readInfo.IOperation;
 
-public class MyAgent {
+public class MyAgent implements IOperation {
 	private String nameAgent;
 	private Integer numberAgent;
-	private List<MyPolicy> policy;
 
 	public MyAgent(String nameAgent, Integer numberAgent) {
 		setNameAgent(nameAgent);
 		setNumberAgent(numberAgent);
-		setPolicy(new ArrayList<MyPolicy>());
 	}
 
 	public MyPerson cratenewClient(Long egn, String firstName, String lastName,
@@ -84,7 +86,8 @@ public class MyAgent {
 	}
 
 	public boolean createPolicy(Long egn, String dkn, Long policyNumber,
-			String regDate, String validDate) {
+			String regDate, String validDate) throws DuplicateName {
+
 		MyPerson client = OfficeProgram.getPeople().get(egn);
 		MyCar car = OfficeProgram.getCars().get(dkn);
 		String[] splitedTime;
@@ -104,26 +107,48 @@ public class MyAgent {
 		MyPolicy newPolicy = new MyPolicy(policyNumber, this, client, car,
 				new Date(), validDateValue);
 
-		// Add policy to the Date tree
-		{
-			String validDateToString = String.valueOf(validDate);
-			if (OfficeProgram.getPoliciesByTime()
-					.containsKey(validDateValue)) {
-				List<MyPolicy> listOfPolicy = OfficeProgram.getPoliciesByTime()
-						.get(validDateValue);
-				listOfPolicy.add(newPolicy);
-			} else {
-				List<MyPolicy> listOfPolicy = new ArrayList<MyPolicy>();
-				listOfPolicy.add(newPolicy);
-				OfficeProgram.getPoliciesByTime().put(validDateValue,
-						listOfPolicy);
-			}
+		// Add policy to the general office
+		if (OfficeProgram.getPolicies().containsKey(policyNumber)) {
+			throw new DuplicateName("The number of policy already exist");
+		} else {
+			OfficeProgram.getPolicies().put(policyNumber, newPolicy);
 		}
 
-		// Add policy to the general office
-		OfficeProgram.getPolicies().put(policyNumber, newPolicy);
-		// Add policy to local agent
-		this.getPolicy().add(newPolicy);
+		// Add policy to the Date tree
+		if (OfficeProgram.getPoliciesByTime().containsKey(validDateValue)) {
+			List<MyPolicy> listOfPolicy = OfficeProgram.getPoliciesByTime()
+					.get(validDateValue);
+			listOfPolicy.add(newPolicy);
+		} else {
+			List<MyPolicy> listOfPolicy = new ArrayList<MyPolicy>();
+			listOfPolicy.add(newPolicy);
+			OfficeProgram.getPoliciesByTime().put(validDateValue, listOfPolicy);
+		}
+
+		// Add policy to Map in DKN. Every key-DKN contains list of polices
+		if (OfficeProgram.getPoliciesByDKN().containsKey(dkn)) {
+			List<MyPolicy> listOfPolicy = OfficeProgram.getPoliciesByDKN().get(
+					dkn);
+			listOfPolicy.add(newPolicy);
+		} else {
+			List<MyPolicy> listOfPolicy = new ArrayList<MyPolicy>();
+			listOfPolicy.add(newPolicy);
+			OfficeProgram.getPoliciesByDKN().put(dkn, listOfPolicy);
+		}
+
+		// Add policy to Map in AgentNumber. key is AgentNumber contains list of
+		// polices
+		if (OfficeProgram.getPoliciesByAgent().containsKey(getNumberAgent())) {
+			List<MyPolicy> listOfPolicy = OfficeProgram.getPoliciesByAgent()
+					.get(getNumberAgent());
+			listOfPolicy.add(newPolicy);
+		} else {
+			List<MyPolicy> listOfPolicy = new ArrayList<MyPolicy>();
+			listOfPolicy.add(newPolicy);
+			OfficeProgram.getPoliciesByAgent().put(getNumberAgent(),
+					listOfPolicy);
+		}
+
 		return true;
 	}
 
@@ -141,14 +166,6 @@ public class MyAgent {
 
 	public void setNumberAgent(Integer numberAgent) {
 		this.numberAgent = numberAgent;
-	}
-
-	public List<MyPolicy> getPolicy() {
-		return policy;
-	}
-
-	public void setPolicy(List<MyPolicy> policy) {
-		this.policy = policy;
 	}
 
 	@Override
@@ -175,5 +192,22 @@ public class MyAgent {
 		} else if (!numberAgent.equals(other.numberAgent))
 			return false;
 		return true;
+	}
+
+	@Override
+	public List<MyPolicy> serachingByDate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MyPolicy> serachingByDKN() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<MyPolicy> getPolicy() {
+		
+		return OfficeProgram.getPoliciesByAgent().get(getNumberAgent());
 	}
 }
