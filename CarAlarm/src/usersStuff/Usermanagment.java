@@ -8,6 +8,10 @@ import org.omg.PortableInterceptor.ORBInitInfoPackage.DuplicateName;
 public class Usermanagment {
 	public static int currentNumOfUsers = 0;
 	private TreeMap<String, User> users;
+	
+	public Usermanagment(){
+		setUsers(new TreeMap<String, User>());
+	}
 
 	public int createUser(String username, String password)
 			throws DuplicateName {
