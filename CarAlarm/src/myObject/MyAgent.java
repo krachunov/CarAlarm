@@ -201,7 +201,7 @@ public class MyAgent implements ISearchOperation {
 	}
 
 	@Override
-	public List<MyPolicy> serachingByDKN() {
+	public List<MyPolicy> serachingPolicyByDKN() {
 		// TODO Auto-generated method stub
 		return null;
 	}
