@@ -17,6 +17,7 @@ import org.omg.PortableInterceptor.ORBInitInfoPackage.DuplicateName;
 
 import usersStuff.User;
 import usersStuff.Usermanagment;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -73,9 +74,8 @@ public class LoginWindow extends JFrame {
 		JButton LoginButton = new JButton("Login");
 		LoginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Usermanagment um = new Usermanagment();
-
-				// TODO
+				LoginButton.isSelected();
+				
 
 			}
 
