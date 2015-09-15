@@ -7,7 +7,7 @@ import org.omg.PortableInterceptor.ORBInitInfoPackage.DuplicateName;
 
 public class Usermanagment {
 	public static int currentNumOfUsers = 0;
-	private TreeMap<String, User> users;
+	private static TreeMap<String, User> users;
 
 	public Usermanagment() {
 		setUsers(new TreeMap<String, User>());
@@ -72,12 +72,12 @@ public class Usermanagment {
 		Usermanagment.currentNumOfUsers = currentNumOfUsers;
 	}
 
-	public TreeMap<String, User> getUsers() {
+	public static TreeMap<String, User> getUsers() {
 		return users;
 	}
 
-	public void setUsers(TreeMap<String, User> users) {
-		this.users = users;
+	public static void setUsers(TreeMap<String, User> users) {
+		Usermanagment.users = users;
 	}
 
 }

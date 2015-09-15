@@ -75,7 +75,12 @@ public class LoginWindow extends JFrame {
 		LoginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				LoginButton.isSelected();
-				
+				Usermanagment umL = new Usermanagment();
+				String u = getTxtUsername().getText();
+				String p = getTxtPassword().getText();
+				User user = umL.logIn(u, p);
+
+				System.out.println(user.getPermissions().isCanAddnewAgent());
 
 			}
 
