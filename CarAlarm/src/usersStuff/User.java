@@ -12,7 +12,7 @@ public class User {
 		setPermissions(new Permissions());
 		int currentNum = Usermanagment.getCurrentNumOfUsers();
 		setUserID(currentNum);
-		Usermanagment.setCurrentNumOfUsers(++currentNum);
+
 	}
 
 	public int getUserID() {

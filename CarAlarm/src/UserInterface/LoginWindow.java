@@ -17,25 +17,13 @@ import org.omg.PortableInterceptor.ORBInitInfoPackage.DuplicateName;
 
 import usersStuff.User;
 import usersStuff.Usermanagment;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class LoginWindow extends JFrame {
-	public JTextField txtUsername;
+	private JTextField txtUsername;
 	private JTextField txtPassword;
 
-	public static void main(String[] args) throws DuplicateName {
-		Usermanagment um = new Usermanagment();
-		um.createUser("admin", "admin");
-
-		User admin = um.getUsers().get("admin");
-
-		LoginWindow log = new LoginWindow();
-		log.setVisible(true);
-
-
-
-	}
-
-	
 	public LoginWindow() {
 		setTitle("Login Window");
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -83,11 +71,36 @@ public class LoginWindow extends JFrame {
 		txtPassword.setColumns(10);
 
 		JButton LoginButton = new JButton("Login");
+		LoginButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Usermanagment um = new Usermanagment();
+
+				// TODO
+
+			}
+
+		});
 		GridBagConstraints gbc_LoginButton = new GridBagConstraints();
 		gbc_LoginButton.anchor = GridBagConstraints.WEST;
 		gbc_LoginButton.gridx = 1;
 		gbc_LoginButton.gridy = 2;
 		getContentPane().add(LoginButton, gbc_LoginButton);
+	}
+
+	public JTextField getTxtUsername() {
+		return txtUsername;
+	}
+
+	public void setTxtUsername(JTextField txtUsername) {
+		this.txtUsername = txtUsername;
+	}
+
+	public JTextField getTxtPassword() {
+		return txtPassword;
+	}
+
+	public void setTxtPassword(JTextField txtPassword) {
+		this.txtPassword = txtPassword;
 	}
 
 }

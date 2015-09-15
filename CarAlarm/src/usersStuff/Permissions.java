@@ -13,7 +13,7 @@ public class Permissions {
 		setCanCreatePolicy(true);
 	}
 
-	public void makeSalesEmployee() {
+	public void makeAgentUser() {
 		setCanAddnewAgent(false);
 		setCanAddCar(true);
 		setCanAddClient(true);

@@ -8,19 +8,39 @@ import org.omg.PortableInterceptor.ORBInitInfoPackage.DuplicateName;
 public class Usermanagment {
 	public static int currentNumOfUsers = 0;
 	private TreeMap<String, User> users;
-	
-	public Usermanagment(){
+
+	public Usermanagment() {
 		setUsers(new TreeMap<String, User>());
 	}
 
-	public int createUser(String username, String password)
+	/**
+	 * 
+	 * @param username
+	 *            - user name
+	 * @param password
+	 *            - password
+	 * @param permission
+	 *            - permission
+	 * @return
+	 * @throws DuplicateName
+	 */
+	public int createUser(String username, String password, String permissions)
 			throws DuplicateName {
 
 		if (!getUsers().containsKey(username)) {
-			getUsers().put(username, new User(username, password));
+			Permissions prm = new Permissions();
+
+			if (permissions.equals("admin")) {
+				prm.makeAdmin();
+			} else {
+				prm.makeAgentUser();
+			}
+			User newUserObject = new User(username, password);
+			newUserObject.setPermissions(prm);
+			getUsers().put(username, newUserObject);
 		} else {
-			throw new DuplicateName(
-					"User with this username and ID already exist");
+			throw new DuplicateName("User with this username \"" + username
+					+ "\" already exist");
 		}
 
 		return currentNumOfUsers++;
@@ -36,10 +56,11 @@ public class Usermanagment {
 			if (user.getPassword().equals(password)) {
 				return user;
 			} else {
-				return null;
+				throw new IllegalAccessError("The password dosn't match");
 			}
 		} else {
-			return null;
+			throw new IllegalAccessError("There is no such user");
+
 		}
 	}
 
