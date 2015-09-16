@@ -15,10 +15,11 @@ public class StartProgram {
 
 		LoginWindow lw = new LoginWindow();
 		lw.setVisible(true);
+		String user = lw.getTxtPassword().getText();
+		String pass = lw.getTxtPassword().getText();
+		
+		System.out.println("U: "+user+" P: "+pass);
 
-		// User user = um.logIn(use, pass);
-		// User user2 = um.logIn("user", "user");
-		// System.out.println(user.getPermissions().isCanAddnewAgent());
 
 	}
 
