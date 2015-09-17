@@ -5,6 +5,7 @@ public class User {
 	private String username;
 	private String password;
 	public Permissions permissions;
+	private boolean isADmin;
 
 	public User(String userName, String password) {
 		setUsername(userName);
@@ -47,6 +48,14 @@ public class User {
 		this.permissions = permissions;
 	}
 
+	public boolean isADmin() {
+		return isADmin;
+	}
+
+	public void setADmin(boolean isADmin) {
+		this.isADmin = isADmin;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -76,6 +85,6 @@ public class User {
 		return true;
 	}
 
-
+	
 
 }

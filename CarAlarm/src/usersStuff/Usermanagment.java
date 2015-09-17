@@ -24,18 +24,19 @@ public class Usermanagment {
 	 * @return
 	 * @throws DuplicateName
 	 */
-	public static int createUser(String username, String password, String permissions)
-			throws DuplicateName {
+	public static int createUser(String username, String password,
+			boolean permissions) throws DuplicateName {
 
 		if (!getUsers().containsKey(username)) {
 			Permissions prm = new Permissions();
+			User newUserObject = new User(username, password);
 
-			if (permissions.equals("admin")) {
+			if (permissions) {
+				newUserObject.setADmin(true);
 				prm.makeAdmin();
 			} else {
 				prm.makeAgentUser();
 			}
-			User newUserObject = new User(username, password);
 			newUserObject.setPermissions(prm);
 			getUsers().put(username, newUserObject);
 		} else {

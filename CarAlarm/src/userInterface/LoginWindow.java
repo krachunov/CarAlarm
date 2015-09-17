@@ -1,4 +1,4 @@
-package UserInterface;
+package userInterface;
 
 import javax.swing.JFrame;
 
@@ -77,16 +77,24 @@ public class LoginWindow extends JFrame {
 
 		JButton LoginButton = new JButton("Login");
 		LoginButton.addActionListener(new ActionListener() {
-			 public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) {
 				LoginButton.isSelected();
 				System.out.println("AAAAAAAAAAA");
-				
+
 				setUse(txtUsername.getText());
 				setPass(txtPassword.getText());
 				String user = getUse();
 				String pass = getPass();
 				User u = Usermanagment.logIn(user, pass);
-				System.out.println("ID"+u.getUserID()+" User: "+u.getUsername());
+				if (u.isADmin()) {
+					AdministratorPanel adminP = new AdministratorPanel();
+					adminP.setVisible(true);
+				} else {
+					UserPanel userP = new UserPanel();
+					userP.setVisible(true);
+				}
+				System.out.println("ID" + u.getUserID() + " User: "
+						+ u.getUsername());
 
 			}
 
@@ -129,6 +137,5 @@ public class LoginWindow extends JFrame {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-	
 
 }
