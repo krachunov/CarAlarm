@@ -24,9 +24,13 @@ import java.awt.event.ActionEvent;
 public class LoginWindow extends JFrame {
 	private JTextField txtUsername;
 	private JTextField txtPassword;
+	private String use;
+	private String pass;
 
 	public LoginWindow() {
 		setTitle("Login Window");
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setBounds(0, 0, 254, 119);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 0, 0, 0 };
 		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0 };
@@ -73,14 +77,16 @@ public class LoginWindow extends JFrame {
 
 		JButton LoginButton = new JButton("Login");
 		LoginButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			 public void actionPerformed(ActionEvent arg0) {
 				LoginButton.isSelected();
-//				Usermanagment umL = new Usermanagment();
-//				String u = getTxtUsername().getText();
-//				String p = getTxtPassword().getText();
-//				User user = umL.logIn(u, p);
-//
-//				System.out.println(user.getPermissions().isCanAddnewAgent());
+				System.out.println("AAAAAAAAAAA");
+				
+				setUse(txtUsername.getText());
+				setPass(txtPassword.getText());
+				String user = getUse();
+				String pass = getPass();
+				User u = Usermanagment.logIn(user, pass);
+				System.out.println("ID"+u.getUserID()+" User: "+u.getUsername());
 
 			}
 
@@ -107,5 +113,22 @@ public class LoginWindow extends JFrame {
 	public void setTxtPassword(JTextField txtPassword) {
 		this.txtPassword = txtPassword;
 	}
+
+	public String getUse() {
+		return use;
+	}
+
+	public void setUse(String use) {
+		this.use = use;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+	
 
 }

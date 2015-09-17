@@ -7,7 +7,7 @@ import org.omg.PortableInterceptor.ORBInitInfoPackage.DuplicateName;
 
 public class Usermanagment {
 	public static int currentNumOfUsers = 0;
-	private static TreeMap<String, User> users;
+	private static TreeMap<String, User> users = new TreeMap<String, User>();
 
 	public Usermanagment() {
 		setUsers(new TreeMap<String, User>());
@@ -24,7 +24,7 @@ public class Usermanagment {
 	 * @return
 	 * @throws DuplicateName
 	 */
-	public int createUser(String username, String password, String permissions)
+	public static int createUser(String username, String password, String permissions)
 			throws DuplicateName {
 
 		if (!getUsers().containsKey(username)) {
@@ -50,7 +50,7 @@ public class Usermanagment {
 		return getUsers().get(currentNumOfUsers);
 	}
 
-	public User logIn(String username, String password) {
+	public static User logIn(String username, String password) {
 		if (getUsers().containsKey(username)) {
 			User user = getUsers().get(username);
 			if (user.getPassword().equals(password)) {

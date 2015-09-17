@@ -7,18 +7,18 @@ import UserInterface.LoginWindow;
 
 public class StartProgram {
 	public static void main(String[] args) throws DuplicateName {
-		System.out.println("Wadsaaa");
-		Usermanagment um = new Usermanagment();
+		System.out.println("Start");
 
-		um.createUser("admin", "admin", "admin");
-		um.createUser("user", "user", "user");
+
+		Usermanagment.createUser("admin", "admin", "admin");
+		Usermanagment.createUser("user", "user", "user");
 
 		LoginWindow lw = new LoginWindow();
 		lw.setVisible(true);
-		String user = lw.getTxtPassword().getText();
-		String pass = lw.getTxtPassword().getText();
-		
-		System.out.println("U: "+user+" P: "+pass);
+		// String user = lw.getUse();
+		// String pass = lw.getPass();
+		//
+		// System.out.println("U: "+user+" P: "+pass);
 
 
 	}
