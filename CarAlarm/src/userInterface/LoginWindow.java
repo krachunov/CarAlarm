@@ -13,8 +13,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import org.omg.PortableInterceptor.ORBInitInfoPackage.DuplicateName;
-
 import usersStuff.User;
 import usersStuff.Usermanagment;
 
@@ -26,6 +24,8 @@ public class LoginWindow extends JFrame {
 	private JTextField txtPassword;
 	private String use;
 	private String pass;
+	JButton LoginButton;
+	JLabel lblPassword;
 
 	public LoginWindow() {
 		setTitle("Login Window");
@@ -49,10 +49,12 @@ public class LoginWindow extends JFrame {
 
 		txtUsername = new JTextField();
 		txtUsername.setText("UserName");
-		DocumentListenerLoginStart lisUser = new DocumentListenerLoginStart(txtUsername);
+		DocumentListenerLoginStart lisUser = new DocumentListenerLoginStart(
+				txtUsername);
 		txtUsername.getDocument().addDocumentListener(lisUser);
-		//TODO
-		
+
+		// TODO click listener
+
 		GridBagConstraints gbc_txtUsername = new GridBagConstraints();
 		gbc_txtUsername.anchor = GridBagConstraints.WEST;
 		gbc_txtUsername.insets = new Insets(0, 0, 5, 0);
@@ -61,7 +63,7 @@ public class LoginWindow extends JFrame {
 		getContentPane().add(txtUsername, gbc_txtUsername);
 		txtUsername.setColumns(10);
 
-		JLabel lblPassword = new JLabel("password");
+		lblPassword = new JLabel("password");
 		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
 		gbc_lblPassword.anchor = GridBagConstraints.EAST;
 		gbc_lblPassword.insets = new Insets(0, 0, 5, 5);
@@ -71,9 +73,11 @@ public class LoginWindow extends JFrame {
 
 		txtPassword = new JPasswordField();
 		txtPassword.setText("Password");
-		DocumentListenerLoginStart lisPass = new DocumentListenerLoginStart(txtPassword);
-		txtUsername.getDocument().addDocumentListener(lisPass);
-		
+		DocumentListenerLoginStart lisPass = new DocumentListenerLoginStart(
+				txtPassword);
+		txtPassword.getDocument().addDocumentListener(lisPass);
+		// TODO click listener
+
 		GridBagConstraints gbc_txtPassword = new GridBagConstraints();
 		gbc_txtPassword.insets = new Insets(0, 0, 5, 0);
 		gbc_txtPassword.anchor = GridBagConstraints.WEST;
@@ -82,7 +86,7 @@ public class LoginWindow extends JFrame {
 		getContentPane().add(txtPassword, gbc_txtPassword);
 		txtPassword.setColumns(10);
 
-		JButton LoginButton = new JButton("Login");
+		LoginButton = new JButton("Login");
 		LoginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				LoginButton.isSelected();

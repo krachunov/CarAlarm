@@ -22,7 +22,7 @@ public class DocumentListenerLoginStart implements
 	 */
 	public DocumentListenerLoginStart(JTextField fild) {
 		this.fild = fild;
-//		this.button = button;
+		this.button = button;
 	}
 
 	@Override
@@ -41,13 +41,13 @@ public class DocumentListenerLoginStart implements
 	}
 
 	public void warn() {
-
-		if ((fild.getText().length()) <= 0) {
-			button.setEnabled(false);
-	
-		} else {
-			button.setEnabled(true);
-		}
+//TODO
+//		if ((fild.getText().length()) <= 0) {
+//			button.setEnabled(false);
+//	
+//		} else {
+//			button.setEnabled(true);
+//		}
 	}
 
 }
