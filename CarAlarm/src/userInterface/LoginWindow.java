@@ -49,6 +49,10 @@ public class LoginWindow extends JFrame {
 
 		txtUsername = new JTextField();
 		txtUsername.setText("UserName");
+		DocumentListenerLoginStart lisUser = new DocumentListenerLoginStart(txtUsername);
+		txtUsername.getDocument().addDocumentListener(lisUser);
+		//TODO
+		
 		GridBagConstraints gbc_txtUsername = new GridBagConstraints();
 		gbc_txtUsername.anchor = GridBagConstraints.WEST;
 		gbc_txtUsername.insets = new Insets(0, 0, 5, 0);
@@ -67,6 +71,9 @@ public class LoginWindow extends JFrame {
 
 		txtPassword = new JPasswordField();
 		txtPassword.setText("Password");
+		DocumentListenerLoginStart lisPass = new DocumentListenerLoginStart(txtPassword);
+		txtUsername.getDocument().addDocumentListener(lisPass);
+		
 		GridBagConstraints gbc_txtPassword = new GridBagConstraints();
 		gbc_txtPassword.insets = new Insets(0, 0, 5, 0);
 		gbc_txtPassword.anchor = GridBagConstraints.WEST;
@@ -89,9 +96,11 @@ public class LoginWindow extends JFrame {
 				if (u.isADmin()) {
 					AdministratorPanel adminP = new AdministratorPanel();
 					adminP.setVisible(true);
+					setVisible(false);
 				} else {
 					UserPanel userP = new UserPanel();
 					userP.setVisible(true);
+					setVisible(false);
 				}
 				System.out.println("ID" + u.getUserID() + " User: "
 						+ u.getUsername());
