@@ -48,6 +48,7 @@ public class CreateNewUsers extends JFrame {
 		getContentPane().add(userField, gbc_userField);
 		userField.setColumns(10);
 
+
 		JLabel lblPassword = new JLabel("Password");
 		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
 		gbc_lblPassword.anchor = GridBagConstraints.EAST;
