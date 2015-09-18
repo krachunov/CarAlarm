@@ -20,7 +20,7 @@ public class DocumentListenerLoginStart implements
 	 * @param button
 	 *            - button to be activated
 	 */
-	public DocumentListenerLoginStart(JTextField fild) {
+	public DocumentListenerLoginStart(JTextField fild, JButton button) {
 		this.fild = fild;
 		this.button = button;
 	}
@@ -41,13 +41,13 @@ public class DocumentListenerLoginStart implements
 	}
 
 	public void warn() {
-//TODO
-//		if ((fild.getText().length()) <= 0) {
-//			button.setEnabled(false);
-//	
-//		} else {
-//			button.setEnabled(true);
-//		}
+
+		if ((fild.getText().length()) <= 0) {
+			button.setEnabled(false);
+		
+		} else {
+			button.setEnabled(true);
+		}
 	}
 
 }

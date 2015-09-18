@@ -28,6 +28,7 @@ public class LoginWindow extends JFrame {
 	JLabel lblPassword;
 
 	public LoginWindow() {
+		LoginButton = new JButton("Login");
 		setTitle("Login Window");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setBounds(0, 0, 254, 119);
@@ -50,7 +51,7 @@ public class LoginWindow extends JFrame {
 		txtUsername = new JTextField();
 		txtUsername.setText("UserName");
 		DocumentListenerLoginStart lisUser = new DocumentListenerLoginStart(
-				txtUsername);
+				txtUsername,LoginButton);
 		txtUsername.getDocument().addDocumentListener(lisUser);
 
 		// TODO click listener
@@ -74,7 +75,7 @@ public class LoginWindow extends JFrame {
 		txtPassword = new JPasswordField();
 		txtPassword.setText("Password");
 		DocumentListenerLoginStart lisPass = new DocumentListenerLoginStart(
-				txtPassword);
+				txtPassword,LoginButton);
 		txtPassword.getDocument().addDocumentListener(lisPass);
 		// TODO click listener
 
@@ -86,7 +87,7 @@ public class LoginWindow extends JFrame {
 		getContentPane().add(txtPassword, gbc_txtPassword);
 		txtPassword.setColumns(10);
 
-		LoginButton = new JButton("Login");
+	
 		LoginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				LoginButton.isSelected();
